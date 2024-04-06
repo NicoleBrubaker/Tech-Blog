@@ -1,0 +1,49 @@
+<div class="flex flex-col items-center mx-auto text-center max-w-3xl">
+  <h1 class="text-4xl font-bold text-blue-700 mt-14">The Tech Blog</h1>
+</div>
+
+
+  <a
+    href="/newpost"
+    class="flex items-center mx-auto bg-blue-700 rounded-md text-white text-center p-2 mt-4 w-48"
+  >Create a new blog post</a>
+
+
+<div class="py-12">
+  <div class="mx-auto max-w-5xl px-6 lg:px-8">
+    <div class="mt-2 space-y-16 border-t border-gray-200 pt-16">
+      {{#each posts as |post|}}
+        <article class="flex flex-col items-start justify-between">
+          <div class="group relative">
+            <h3
+              class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600"
+            >
+              <a href="#">
+                <span class="absolute inset-0"></span>
+                {{post.title}}
+              </a>
+            </h3>
+            <p class="mt-5 text-sm leading-6 text-gray-600">{{post.body}}</p>
+          </div>
+          <div class="relative mt-8 flex items-center gap-x-4">
+            <div class="text-sm leading-6">
+              <p class="font-semibold text-gray-800">
+                Written by:
+                <a href="#">
+                  <span class="absolute inset-0"></span>
+                  {{post.author}}
+                </a>
+              </p>
+              <div class="flex items-center gap-x-4 text-xs">
+                <time
+                  datetime="{{post.date}}"
+                  class="text-gray-500"
+                >{{post.date}}</time>
+              </div>
+            </div>
+          </div>
+        </article>
+      {{/each}}
+    </div>
+  </div>
+</div>
