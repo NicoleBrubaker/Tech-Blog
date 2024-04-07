@@ -9,7 +9,7 @@ router.post("/", async (req, res) => {
 
     // Create a new post
     const newPost = await Post.create({
-      user_id: 1,
+      user_id,
       author,
       date,
       title,

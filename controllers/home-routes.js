@@ -1,33 +1,49 @@
 const router = require("express").Router();
 const { Post } = require("./../models");
+const withAuth = require("../utils/auth")
 
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
-      order: [["date", "DESC"]], // Adjust ordering as needed
+      order: [["date", "DESC"]],
     });
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log(posts);
-    res.render("homepage", { posts });
+    res.render("homepage", { posts, loggedIn: req.session.loggedIn });
   } catch (err) {
     console.error(err);
     res.status(500).send(err.message);
   }
 });
 
-router.get("/newpost", async (req, res) => {
-  res.render("newpost");
+router.get("/dashboard", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findAll({
+      where: { user_id: req.session.userId },
+      order: [["date", "DESC"]],
+    });
+    const posts = postData.map((post) => post.get({ plain: true }));
+    res.render("dashboard", { posts, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(err.message);
+  }
 });
 
+router.get("/newpost", withAuth, async (req, res) => {
+  res.render("newpost", {
+    user_id: req.session.userId,
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get("/login", async (req, res) => {
+  res.render("login");
+});
+
+router.get("/signup", async (req, res) => {
+  res.render("signup");
+});
 
 // router.get("/blog:id")
-
-// router.get("/login", async (req, res) => {
-//   res.render("login");
-// });
-
-// router.get("/user", async (req, res) => {
-//   res.render("user");
-// });
 
 module.exports = router;

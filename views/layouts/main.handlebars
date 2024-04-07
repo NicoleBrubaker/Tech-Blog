@@ -15,15 +15,17 @@
   <div class="mx-auto max-w-7xl px-4">
     <div class="flex h-16 justify-between">
       <div class="flex items-center">
-        <button class="bg-white rounded-md w-24 m-2">
-          <a href="/" class="p-2">Home</a>
-        </button>
-        <button class="bg-white rounded-md w-24 m-2">
-          <a href="" class="p-2">Dashboard</a>
-        </button>
-        <button class="bg-white rounded-md w-24 m-2">
-          <a href="/login" class="p-2">Login</a>
-        </button>
+          <a href="/" class="bg-white rounded-md w-24 m-2">Home</a>
+          {{#if loggedIn}}
+            <a class="bg-white rounded-md w-24 m-2" href="/dashboard">Dashboard</a>
+          {{/if}}
+          {{#if loggedIn}}
+            <a class="bg-white rounded-md w-24 m-2" href="/api/users/logout" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+            <form id="logout-form" action="/api/users/logout" method="POST" style="display: none;"></form>
+          {{else}}
+            <a class="bg-white rounded-md w-24 m-2" href="/login">Login</a>
+          {{/if}}
+        </div>
     </div>
   </div>
 </nav>
