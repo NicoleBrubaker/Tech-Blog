@@ -44,6 +44,20 @@ router.get("/signup", async (req, res) => {
   res.render("signup");
 });
 
-// router.get("/blog:id")
+router.get("/blog/:id", async (req, res) => {
+  try {
+    const id = req.params.id;
+    const postInstance = await Post.findOne({ where: { id: id } });
+
+    const post = postInstance.get({ plain: true });
+    console.log(post);
+
+    res.render("blogpost", { post });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("An error occurred");
+  }
+});
+
 
 module.exports = router;
