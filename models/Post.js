@@ -1,3 +1,5 @@
+// Post model to include all necessary details, setting up primary key
+
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 

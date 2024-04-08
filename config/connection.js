@@ -1,3 +1,5 @@
+// setting up sequelilze, and looking to env for credentials
+
 const Sequelize = require("sequelize");
 require("dotenv").config();
 

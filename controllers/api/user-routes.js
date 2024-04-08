@@ -1,3 +1,5 @@
+// Routes for user authentication, login, signup, etc. Verifying a user is signed in and saving their data.
+
 const router = require("express").Router();
 const { User } = require("../../models");
 
@@ -46,7 +48,6 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    // Once the user successfully logs in, set up the sessions variable 'loggedIn'
     req.session.save(() => {
       req.session.loggedIn = true;
       req.session.userId = dbUserData.id;

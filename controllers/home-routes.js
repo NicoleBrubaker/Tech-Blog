@@ -1,3 +1,5 @@
+// All home routes, from the base home page, to serve or "get" respective pages as a user clicks around
+
 const router = require("express").Router();
 const { Post } = require("./../models");
 const withAuth = require("../utils/auth")
