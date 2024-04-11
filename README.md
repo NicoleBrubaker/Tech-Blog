@@ -22,7 +22,7 @@ I do not foresee future development on this. However, one item that was not incl
 
 GitHub repo: https://github.com/NicoleBrubaker/Tech-Blog
 
-Deployed using Heroku: 
+Deployed using Heroku: https://tech-blog-brubaker-45f0057a5197.herokuapp.com/
 
 Home page of application:
 
